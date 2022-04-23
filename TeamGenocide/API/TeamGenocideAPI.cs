@@ -26,12 +26,12 @@ namespace TeamGenocide.API
             if (side == Side.None || side == Side.Tutorial)
                 throw new AnnouncementsNotAllowedException("Announcements are not allowed for this Side!");
 
-            if (Plugin.Instance.Config.FacilityForceDeathAnnouncement is null || Plugin.Instance.Config.CiDeathAnnouncement is null || Plugin.Instance.Config.ScpDeathAnnouncement is null)
+            if (Plugin.Instance.Config.FfDeathAnnouncement is null || Plugin.Instance.Config.CiDeathAnnouncement is null || Plugin.Instance.Config.ScpDeathAnnouncement is null)
                 throw new InvalidAnnouncementException("There was not an announcement set for this Side.");
 
             if (side == Side.Mtf)
             {
-                Cassie.Message(Plugin.Instance.Config.FacilityForceDeathAnnouncement, true);
+                Cassie.Message(Plugin.Instance.Config.FfDeathAnnouncement, true);
                 AnnouncedFfDeath = true;
             }
 
