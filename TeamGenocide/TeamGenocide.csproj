@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\TeamGenocideAPI.cs" />
+    <Compile Include="Commands\ToggleAnnouncements.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="EventHandler.cs" />
     <Compile Include="Exceptions\AnnouncementsNotAllowedException.cs" />
