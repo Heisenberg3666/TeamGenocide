@@ -31,7 +31,7 @@ namespace TeamGenocide.API
 
             if (side == Side.Mtf)
             {
-                Cassie.Message(Plugin.Instance.Config.FfDeathAnnouncement, true);
+                Cassie.MessageTranslated(Plugin.Instance.Config.FfDeathAnnouncement, Plugin.Instance.Config.FfSubtitles);
                 Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
                 AnnouncedFfDeath = true;
                 Log.Debug("Set AnnouncedFfDeath to true.", Plugin.Instance.Config.DebugMode);
@@ -39,14 +39,14 @@ namespace TeamGenocide.API
 
             if (side == Side.ChaosInsurgency)
             {
-                Cassie.Message(Plugin.Instance.Config.CiDeathAnnouncement, true);
+                Cassie.MessageTranslated(Plugin.Instance.Config.CiDeathAnnouncement, Plugin.Instance.Config.CiSubtitles);
                 Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
                 AnnouncedCiDeath = true;
                 Log.Debug("Set AnnouncedCiDeath to true.", Plugin.Instance.Config.DebugMode);
             }
             if (side == Side.Scp)
             {
-                Cassie.Message(Plugin.Instance.Config.ScpDeathAnnouncement, true);
+                Cassie.MessageTranslated(Plugin.Instance.Config.ScpDeathAnnouncement, Plugin.Instance.Config.ScpSubtitles);
                 Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
                 AnnouncedScpDeath = true;
                 Log.Debug("Set AnnouncedScpDeath to true.", Plugin.Instance.Config.DebugMode);
