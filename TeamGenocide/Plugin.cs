@@ -12,7 +12,7 @@ namespace TeamGenocide
 
         public override string Name => "TeamGenocide";
         public override string Author => "Heisenberg3666";
-        public override Version Version => new Version(1, 0, 0, 0);
+        public override Version Version => new Version(1, 1, 1, 0);
         public override Version RequiredExiledVersion => new Version(5, 1, 3);
 
         public override void OnEnabled()
@@ -33,17 +33,16 @@ namespace TeamGenocide
 
         public void RegisterEvents()
         {
-            Player.Died += events.OnDied;
             Server.RoundStarted += events.OnRoundStart;
             Server.RoundEnded += events.OnRoundEnd;
-            Server.RespawningTeam += events.OnSpawnWave;
+            Player.ChangingRole += events.OnChangingRole;
         }
 
         public void UnregisterEvents()
         {
             Server.RoundEnded -= events.OnRoundEnd;
             Server.RoundStarted -= events.OnRoundStart;
-            Player.Died -= events.OnDied;
+            Player.ChangingRole -= events.OnChangingRole;
         }
     }
 }

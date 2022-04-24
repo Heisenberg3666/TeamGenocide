@@ -16,26 +16,26 @@ namespace TeamGenocide
         {
             Timing.CallDelayed(5f, () =>
             {
+                int ciPlayers = 0;
+                int mtfPlayers = 0;
+                int scpPlayers = 0;
+
+                foreach (Player player in Player.List)
+                {
+                    if (player.Role.Side == Side.ChaosInsurgency)
+                        ciPlayers++;
+                    if (player.Role.Side == Side.Mtf)
+                        mtfPlayers++;
+                    if (player.Role.Side == Side.Scp)
+                        scpPlayers++;
+                }
+
+                TeamGenocideAPI.AnnouncedCiDeath = ciPlayers == 0;
+                TeamGenocideAPI.AnnouncedFfDeath = mtfPlayers == 0;
+                TeamGenocideAPI.AnnouncedScpDeath = scpPlayers == 0;
+
                 Coroutines.Add(Timing.RunCoroutine(TeamGenocideAPI.CheckForSideDeath()));
             });
-
-            int ciPlayers = 0;
-            int mtfPlayers = 0;
-            int scpPlayers = 0;
-
-            foreach (Player player in Player.List)
-            {
-                if (player.Role.Side == Side.ChaosInsurgency)
-                    ciPlayers++;
-                if (player.Role.Side == Side.Mtf)
-                    mtfPlayers++;
-                if (player.Role.Side == Side.Scp)
-                    scpPlayers++;
-            }
-
-            TeamGenocideAPI.AnnouncedCiDeath = ciPlayers == 0;
-            TeamGenocideAPI.AnnouncedFfDeath = mtfPlayers == 0;
-            TeamGenocideAPI.AnnouncedScpDeath = scpPlayers == 0;
         }
 
         public void OnRoundEnd(RoundEndedEventArgs ev)
@@ -43,17 +43,24 @@ namespace TeamGenocide
             Coroutines.Clear();
         }
 
-        public void OnSpawnWave(RespawningTeamEventArgs ev)
+        public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (ev.Players.FirstOrDefault().Role.Side == Side.Mtf)
+            if (TeamGenocideAPI.RoleSide(ev.NewRole) == Side.Mtf)
+            {
                 TeamGenocideAPI.AnnouncedFfDeath = false;
-            if (ev.Players.FirstOrDefault().Role.Side == Side.ChaosInsurgency)
+                Log.Debug("Set AnnouncedFfDeath to false.", Plugin.Instance.Config.DebugMode);
+            }
+            if (TeamGenocideAPI.RoleSide(ev.NewRole) == Side.ChaosInsurgency)
+            {
                 TeamGenocideAPI.AnnouncedCiDeath = false;
-        }
+                Log.Debug("Set AnnouncedFfDeath to false.", Plugin.Instance.Config.DebugMode);
+            }
 
-        public void OnDied(DiedEventArgs ev)
-        {
-            
+            if (TeamGenocideAPI.RoleSide(ev.NewRole) == Side.Scp)
+            {
+                TeamGenocideAPI.AnnouncedScpDeath = false;
+                Log.Debug("Set AnnouncedScpDeath to false.", Plugin.Instance.Config.DebugMode);
+            }
         }
     }
 }

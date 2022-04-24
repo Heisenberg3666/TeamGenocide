@@ -32,19 +32,38 @@ namespace TeamGenocide.API
             if (side == Side.Mtf)
             {
                 Cassie.Message(Plugin.Instance.Config.FfDeathAnnouncement, true);
+                Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
                 AnnouncedFfDeath = true;
+                Log.Debug("Set AnnouncedFfDeath to true.", Plugin.Instance.Config.DebugMode);
             }
 
             if (side == Side.ChaosInsurgency)
             {
                 Cassie.Message(Plugin.Instance.Config.CiDeathAnnouncement, true);
+                Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
                 AnnouncedCiDeath = true;
+                Log.Debug("Set AnnouncedCiDeath to true.", Plugin.Instance.Config.DebugMode);
             }
             if (side == Side.Scp)
             {
                 Cassie.Message(Plugin.Instance.Config.ScpDeathAnnouncement, true);
+                Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
                 AnnouncedScpDeath = true;
+                Log.Debug("Set AnnouncedScpDeath to true.", Plugin.Instance.Config.DebugMode);
             }
+        }
+
+        public static Side RoleSide(RoleType role)
+        {
+            if (role == RoleType.NtfSergeant || role == RoleType.NtfCaptain || role == RoleType.NtfPrivate || role == RoleType.NtfSpecialist || role == RoleType.Scientist)
+                return Side.Mtf;
+            if (role == RoleType.ChaosRepressor || role == RoleType.ChaosMarauder || role == RoleType.ChaosConscript || role == RoleType.ChaosRifleman || role == RoleType.ClassD)
+                return Side.ChaosInsurgency;
+            if (role == RoleType.Scp049 || role == RoleType.Scp0492 || role == RoleType.Scp079 || role == RoleType.Scp096 || role == RoleType.Scp106 || role == RoleType.Scp173 || role.Is939())
+                return Side.Scp;
+            if (role == RoleType.None)
+                return Side.None;
+            return Side.Tutorial;
         }
 
         public static bool IsSideAlive(Side side)

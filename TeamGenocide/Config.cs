@@ -6,6 +6,8 @@ namespace TeamGenocide
     public class Config : IConfig
     {
         public bool IsEnabled { get; set; } = true;
+        [Description("Enable to help find bug sources.")]
+        public bool DebugMode { get; set; } = false;
 
         [Description("What to announce when all SCP's are dead. (Leave blank to not announce anything)")]
         public string ScpDeathAnnouncement { get; set; } = "All SCPs have been secured .";
