@@ -1,4 +1,5 @@
 # TeamGenocide
+[![Github All Releases](https://img.shields.io/github/downloads/Heisenberg3666/TeamGenocide/total.svg)]()
 When all players on a Side dies, a configurable announcement is made by CASSIE.
 
 ## Config
