@@ -1,125 +1,56 @@
-﻿using Exiled.API.Enums;
-using Exiled.API.Features;
-using MEC;
+﻿using Exiled.API.Features;
 using System.Collections.Generic;
-
-using TeamGenocide.Exceptions;
+using System.Linq;
+using TeamGenocide.API.Entities;
+using TeamGenocide.API.Enums;
 
 namespace TeamGenocide.API
 {
     public static class TeamGenocideAPI
     {
         public static bool AnnouncementsAllowed = true;
+        public static Dictionary<Team, bool> DeathAnnounced = new Dictionary<Team, bool>();
 
-        public static bool AnnouncedFfDeath = false;
-        public static bool AnnouncedCiDeath = false;
-        public static bool AnnouncedScpDeath = false;
-
-        public static void AnnounceDeath(Side side)
+        public static void AnnounceDeath(Team team)
         {
-            if (!AnnouncementsAllowed)
-                throw new AnnouncementsNotAllowedException("Death announcements are not allowed! Use \"toggle_announcements\" in the RA console to enable them.");
+            Announcement announcement = Plugin.Instance.Config.Announcements.Where(x => x.Team == team)
+                .FirstOrDefault();
 
-            if (IsSideAlive(side))
-                throw new AnnouncementsNotAllowedException("The specified Side is alive!");
+            if (announcement is null ||
+                team == Team.RIP ||
+                !AnnouncementsAllowed)
+                return;
 
-            if (side == Side.None || side == Side.Tutorial)
-                throw new AnnouncementsNotAllowedException("Announcements are not allowed for this Side!");
+            if (announcement.AnnouncementType.HasFlag(AnnouncementType.Cassie) &&
+                !string.IsNullOrEmpty(announcement.AnnouncementCassie) &&
+                !string.IsNullOrEmpty(announcement.AnnouncementSubtitle))
+                Cassie.MessageTranslated(announcement.AnnouncementCassie, announcement.AnnouncementSubtitle);
+            else if (announcement.AnnouncementType.HasFlag(AnnouncementType.Cassie) &&
+                !string.IsNullOrEmpty(announcement.AnnouncementCassie))
+                Cassie.Message(announcement.AnnouncementCassie);
 
-            if (Plugin.Instance.Config.FfDeathAnnouncement is null || Plugin.Instance.Config.CiDeathAnnouncement is null || Plugin.Instance.Config.ScpDeathAnnouncement is null)
-                throw new InvalidAnnouncementException("There was not an announcement set for this Side.");
+            if (announcement.AnnouncementType.HasFlag(AnnouncementType.Broadcast) &&
+                !string.IsNullOrEmpty(announcement.AnnouncementSubtitle))
+                foreach (Player player in Player.List)
+                    player.Broadcast(announcement.DisplayFor, announcement.AnnouncementSubtitle);
 
-            if (side == Side.Mtf)
-            {
-                Cassie.MessageTranslated(Plugin.Instance.Config.FfDeathAnnouncement, Plugin.Instance.Config.FfSubtitles);
-                Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
-                AnnouncedFfDeath = true;
-                Log.Debug("Set AnnouncedFfDeath to true.", Plugin.Instance.Config.DebugMode);
-            }
+            if (announcement.AnnouncementType.HasFlag(AnnouncementType.Hint) &&
+                !string.IsNullOrEmpty(announcement.AnnouncementSubtitle))
+                foreach (Player player in Player.List)
+                    player.ShowHint(announcement.AnnouncementSubtitle, announcement.DisplayFor);
 
-            if (side == Side.ChaosInsurgency)
-            {
-                Cassie.MessageTranslated(Plugin.Instance.Config.CiDeathAnnouncement, Plugin.Instance.Config.CiSubtitles);
-                Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
-                AnnouncedCiDeath = true;
-                Log.Debug("Set AnnouncedCiDeath to true.", Plugin.Instance.Config.DebugMode);
-            }
-            if (side == Side.Scp)
-            {
-                Cassie.MessageTranslated(Plugin.Instance.Config.ScpDeathAnnouncement, Plugin.Instance.Config.ScpSubtitles);
-                Log.Debug("Announcing death.", Plugin.Instance.Config.DebugMode);
-                AnnouncedScpDeath = true;
-                Log.Debug("Set AnnouncedScpDeath to true.", Plugin.Instance.Config.DebugMode);
-            }
+            DeathAnnounced[team] = true;
         }
 
-        public static Side RoleSide(RoleType role)
+        public static uint PlayersInTeam(Team team)
         {
-            if (role == RoleType.NtfSergeant || role == RoleType.NtfCaptain || role == RoleType.NtfPrivate || role == RoleType.NtfSpecialist || role == RoleType.Scientist)
-                return Side.Mtf;
-            if (role == RoleType.ChaosRepressor || role == RoleType.ChaosMarauder || role == RoleType.ChaosConscript || role == RoleType.ChaosRifleman || role == RoleType.ClassD)
-                return Side.ChaosInsurgency;
-            if (role == RoleType.Scp049 || role == RoleType.Scp0492 || role == RoleType.Scp079 || role == RoleType.Scp096 || role == RoleType.Scp106 || role == RoleType.Scp173 || role.Is939())
-                return Side.Scp;
-            if (role == RoleType.None)
-                return Side.None;
-            return Side.Tutorial;
-        }
-
-        public static bool IsSideAlive(Side side)
-        {
-            int peopleAlive = 0;
+            uint count = 0;
 
             foreach (Player player in Player.List)
-            {
-                if (player.IsAlive && player.Role.Side == side)
-                    peopleAlive++;
-            }
+                if (player.Role.Team == team)
+                    count++;
 
-            return peopleAlive > 0;
-        }
-
-        public static IEnumerator<float> CheckForSideDeath()
-        {
-            while (true)
-            {
-                if (!IsSideAlive(Side.Mtf) && !AnnouncedFfDeath)
-                {
-                    try
-                    {
-                        AnnounceDeath(Side.Mtf);
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                }
-
-                if (!IsSideAlive(Side.ChaosInsurgency) && !AnnouncedCiDeath)
-                {
-                    try
-                    {
-                        AnnounceDeath(Side.ChaosInsurgency);
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                }
-
-                if (!IsSideAlive(Side.Scp) && !AnnouncedScpDeath)
-                {
-                    try
-                    {
-                        AnnounceDeath(Side.Scp);
-                    }
-                    catch
-                    {
-                        continue;
-                    }
-                }
-                yield return Timing.WaitForSeconds(2.5f);
-            }
+            return count;
         }
     }
 }
