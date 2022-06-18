@@ -8,12 +8,13 @@ namespace TeamGenocide
     public class Plugin : Plugin<Config>
     {
         private EventHandler events;
+
         public static Plugin Instance;
 
-        public override string Name => "TeamGenocide";
-        public override string Author => "Heisenberg3666";
-        public override Version Version => new Version(1, 1, 1, 0);
-        public override Version RequiredExiledVersion => new Version(5, 1, 3);
+        public override string Name { get; } = "TeamGenocide";
+        public override string Author { get; } = "Heisenberg3666";
+        public override Version Version { get; } = new Version(2, 0, 0, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(5, 2, 0);
 
         public override void OnEnabled()
         {
