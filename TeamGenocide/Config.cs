@@ -10,9 +10,6 @@ namespace TeamGenocide
     {
         public bool IsEnabled { get; set; } = true;
 
-        [Description("Enable to help find bug sources.")]
-        public bool DebugMode { get; set; } = false;
-
         public IEnumerable<Announcement> Announcements { get; set; } = new List<Announcement>()
         {
             new Announcement()
