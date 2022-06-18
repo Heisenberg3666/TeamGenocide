@@ -10,6 +10,7 @@ namespace TeamGenocide
     {
         public bool IsEnabled { get; set; } = true;
 
+        [Description("It is recommended to come up with your own announcements for your server, these are just crappy examples.")]
         public IEnumerable<Announcement> Announcements { get; set; } = new List<Announcement>()
         {
             new Announcement()
