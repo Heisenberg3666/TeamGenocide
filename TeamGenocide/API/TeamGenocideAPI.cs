@@ -41,16 +41,5 @@ namespace TeamGenocide.API
 
             DeathAnnounced[team] = true;
         }
-
-        public static uint PlayersInTeam(Team team)
-        {
-            uint count = 0;
-
-            foreach (Player player in Player.List)
-                if (player.Role.Team == team)
-                    count++;
-
-            return count;
-        }
     }
 }

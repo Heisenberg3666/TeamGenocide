@@ -12,13 +12,13 @@ namespace TeamGenocide.Commands
 
         public string[] Aliases => new[] { "togg_ann" };
 
-        public string Description => "If announcements from TeamGenocide plugin is allowed.";
+        public string Description => "If announcements from TeamGenocide plugin are allowed.";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             if (!sender.CheckPermission($"teamgenocide.{Command}"))
             {
-                response = "You do not have permissions to use this command.";
+                response = "You do not have permission to use this command.";
                 return false;
             }
 

@@ -3,6 +3,7 @@ using Exiled.API.Features;
 using Exiled.Events.EventArgs;
 using MEC;
 using System.Collections.Generic;
+using System.Linq;
 using TeamGenocide.API;
 using TeamGenocide.API.Entities;
 
@@ -23,7 +24,7 @@ namespace TeamGenocide
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (TeamGenocideAPI.PlayersInTeam(ev.Player.Role.Team) <= 1)
+            if (Player.List.Where(x => x.Role.Team == ev.Player.Role.Team).Count() <= 1)
                 TeamGenocideAPI.AnnounceDeath(ev.Player.Role.Team);
         }
     }
