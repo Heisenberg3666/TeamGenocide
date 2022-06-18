@@ -7,7 +7,7 @@ namespace TeamGenocide
 {
     public class Plugin : Plugin<Config>
     {
-        private EventHandler events;
+        private EventHandler _events;
 
         public static Plugin Instance;
 
@@ -19,7 +19,7 @@ namespace TeamGenocide
         public override void OnEnabled()
         {
             Instance = this;
-            events = new EventHandler();
+            _events = new EventHandler();
             RegisterEvents();
             base.OnEnabled();
         }
@@ -27,23 +27,23 @@ namespace TeamGenocide
         public override void OnDisabled()
         {
             UnregisterEvents();
-            events = null;
+            _events = null;
             Instance = null;
             base.OnDisabled();
         }
 
         public void RegisterEvents()
         {
-            Server.RoundStarted += events.OnRoundStart;
-            Server.RoundEnded += events.OnRoundEnd;
-            Player.ChangingRole += events.OnChangingRole;
+            Server.RoundStarted += _events.OnRoundStart;
+            Server.RoundEnded += _events.OnRoundEnd;
+            Player.ChangingRole += _events.OnChangingRole;
         }
 
         public void UnregisterEvents()
         {
-            Server.RoundEnded -= events.OnRoundEnd;
-            Server.RoundStarted -= events.OnRoundStart;
-            Player.ChangingRole -= events.OnChangingRole;
+            Server.RoundEnded -= _events.OnRoundEnd;
+            Server.RoundStarted -= _events.OnRoundStart;
+            Player.ChangingRole -= _events.OnChangingRole;
         }
     }
 }
