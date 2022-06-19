@@ -1,8 +1,5 @@
-﻿using Exiled.API.Enums;
-using Exiled.API.Features;
+﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs;
-using MEC;
-using System.Collections.Generic;
 using System.Linq;
 using TeamGenocide.API;
 using TeamGenocide.API.Entities;
