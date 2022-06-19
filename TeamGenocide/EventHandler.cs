@@ -1,5 +1,6 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs;
+using System.Collections.Generic;
 using System.Linq;
 using TeamGenocide.API;
 using TeamGenocide.API.Entities;
@@ -10,7 +11,9 @@ namespace TeamGenocide
     {
         public void OnRoundStart()
         {
-            foreach (Announcement announcement in Plugin.Instance.Config.Announcements)
+            IEnumerable<Announcement> announcements = Plugin.Instance.Config.Announcements;
+
+            foreach (Announcement announcement in announcements)
                 TeamGenocideAPI.DeathAnnounced[announcement.Team] = false;
         }
 
