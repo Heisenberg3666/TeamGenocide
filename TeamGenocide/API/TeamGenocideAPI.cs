@@ -30,13 +30,11 @@ namespace TeamGenocide.API
 
             if (announcement.AnnouncementType.HasFlag(AnnouncementType.Broadcast) &&
                 !string.IsNullOrEmpty(announcement.AnnouncementSubtitle))
-                foreach (Player player in Player.List.Where(x => x.Role.Team == team))
-                    player.Broadcast(announcement.DisplayFor, announcement.AnnouncementSubtitle);
+                Map.Broadcast(announcement.DisplayFor, announcement.AnnouncementSubtitle);
 
             if (announcement.AnnouncementType.HasFlag(AnnouncementType.Hint) &&
                 !string.IsNullOrEmpty(announcement.AnnouncementSubtitle))
-                foreach (Player player in Player.List.Where(x => x.Role.Team == team))
-                    player.ShowHint(announcement.AnnouncementSubtitle, announcement.DisplayFor);
+                Map.ShowHint(announcement.AnnouncementSubtitle, announcement.DisplayFor);
 
             DeathAnnounced[team] = true;
         }

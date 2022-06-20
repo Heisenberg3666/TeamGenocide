@@ -24,8 +24,10 @@ namespace TeamGenocide
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (Player.List.Where(x => x.Role.Team == ev.Player.Role.Team).Count() <= 1)
-                TeamGenocideAPI.AnnounceDeath(ev.Player.Role.Team);
+            Player player = ev.Player;
+
+            if (Player.List.Where(x => x.Role.Team == player.Role.Team).Count() <= 1)
+                TeamGenocideAPI.AnnounceDeath(player.Role.Team);
         }
     }
 }
