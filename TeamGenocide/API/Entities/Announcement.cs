@@ -4,8 +4,6 @@ namespace TeamGenocide.API.Entities
 {
     public class Announcement
     {
-        public Team Team { get; set; }
-
         public string AnnouncementCassie { get; set; }
         public string AnnouncementSubtitle { get; set; }
         public string AnnouncementBroadcast { get; set; }

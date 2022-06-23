@@ -9,19 +9,6 @@ namespace TeamGenocide
 {
     public class EventHandler
     {
-        public void OnRoundStart()
-        {
-            IEnumerable<Announcement> announcements = Plugin.Instance.Config.Announcements;
-
-            foreach (Announcement announcement in announcements)
-                TeamGenocideAPI.DeathAnnounced[announcement.Team] = false;
-        }
-
-        public void OnRoundEnd(RoundEndedEventArgs ev)
-        {
-            TeamGenocideAPI.DeathAnnounced = null;
-        }
-
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
             if (!TeamGenocideAPI.AnnouncementsAllowed &&
@@ -30,10 +17,7 @@ namespace TeamGenocide
 
             if (Player.List.FirstOrDefault(x => x.Role.Team == ev.Player.Role.Team) != null)
             {
-                Announcement announcement = Plugin.Instance.Config.Announcements
-                    .FirstOrDefault(x => x.Team == ev.Player.Role.Team);
-
-                if (announcement != null)
+                if (Plugin.Instance.Config.Announcements.TryGetValue(ev.Player.Role.Team, out Announcement announcement))
                     TeamGenocideAPI.AnnounceDeath(announcement);
             }
         }

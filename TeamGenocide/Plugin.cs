@@ -13,13 +13,14 @@ namespace TeamGenocide
 
         public override string Name { get; } = "TeamGenocide";
         public override string Author { get; } = "Heisenberg3666";
-        public override Version Version { get; } = new Version(2, 0, 0, 0);
+        public override Version Version { get; } = new Version(2, 1, 0, 0);
         public override Version RequiredExiledVersion { get; } = new Version(5, 2, 0);
 
         public override void OnEnabled()
         {
             Instance = this;
             _events = new EventHandler();
+
             RegisterEvents();
 
             base.OnEnabled();
@@ -28,6 +29,7 @@ namespace TeamGenocide
         public override void OnDisabled()
         {
             UnregisterEvents();
+
             _events = null;
             Instance = null;
 
@@ -36,15 +38,11 @@ namespace TeamGenocide
 
         public void RegisterEvents()
         {
-            Server.RoundStarted += _events.OnRoundStart;
-            Server.RoundEnded += _events.OnRoundEnd;
             Player.ChangingRole += _events.OnChangingRole;
         }
 
         public void UnregisterEvents()
         {
-            Server.RoundEnded -= _events.OnRoundEnd;
-            Server.RoundStarted -= _events.OnRoundStart;
             Player.ChangingRole -= _events.OnChangingRole;
         }
     }

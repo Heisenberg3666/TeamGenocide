@@ -1,5 +1,4 @@
 ﻿using Exiled.API.Features;
-using System.Collections.Generic;
 using TeamGenocide.API.Entities;
 using TeamGenocide.API.Enums;
 
@@ -8,7 +7,6 @@ namespace TeamGenocide.API
     public static class TeamGenocideAPI
     {
         public static bool AnnouncementsAllowed = true;
-        public static Dictionary<Team, bool> DeathAnnounced = new Dictionary<Team, bool>();
 
         public static void AnnounceDeath(Announcement announcement)
         {
