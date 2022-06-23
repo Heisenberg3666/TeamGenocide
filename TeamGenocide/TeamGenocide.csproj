@@ -105,12 +105,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\TeamGenocideAPI.cs" />
-    <Compile Include="Commands\ToggleAnnouncements.cs" />
+    <Compile Include="API\TeamGenocideApi.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="API\Entities\Announcement.cs" />
     <Compile Include="API\Enums\AnnouncementType.cs" />
-    <Compile Include="EventHandler.cs" />
+    <Compile Include="EventHandlers.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

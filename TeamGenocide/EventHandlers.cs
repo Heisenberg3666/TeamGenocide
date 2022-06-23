@@ -7,18 +7,24 @@ using TeamGenocide.API.Entities;
 
 namespace TeamGenocide
 {
-    public class EventHandler
+    public class EventHandlers
     {
+        private readonly TeamGenocideApi _api;
+
+        public EventHandlers(TeamGenocideApi api)
+        {
+            _api = api;
+        }
+
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            if (!TeamGenocideAPI.AnnouncementsAllowed &&
-                ev.Player.Role.Team == Team.RIP)
+            if (ev.Player.Role.Team == Team.RIP)
                 return;
 
             if (Player.List.FirstOrDefault(x => x.Role.Team == ev.Player.Role.Team) != null)
             {
                 if (Plugin.Instance.Config.Announcements.TryGetValue(ev.Player.Role.Team, out Announcement announcement))
-                    TeamGenocideAPI.AnnounceDeath(announcement);
+                    _api.AnnounceDeath(announcement);
             }
         }
     }

@@ -4,11 +4,9 @@ using TeamGenocide.API.Enums;
 
 namespace TeamGenocide.API
 {
-    public static class TeamGenocideAPI
+    public class TeamGenocideApi
     {
-        public static bool AnnouncementsAllowed = true;
-
-        public static void AnnounceDeath(Announcement announcement)
+        public void AnnounceDeath(Announcement announcement)
         {
             if (announcement.AnnouncementType.HasFlag(AnnouncementType.Cassie) &&
                 !string.IsNullOrEmpty(announcement.AnnouncementCassie))

@@ -1,5 +1,6 @@
 ﻿using Exiled.API.Features;
 using System;
+using TeamGenocide.API;
 using Player = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
 
@@ -7,7 +8,8 @@ namespace TeamGenocide
 {
     public class Plugin : Plugin<Config>
     {
-        private EventHandler _events;
+        private EventHandlers _events;
+        private TeamGenocideApi _api;
 
         public static Plugin Instance;
 
@@ -19,7 +21,8 @@ namespace TeamGenocide
         public override void OnEnabled()
         {
             Instance = this;
-            _events = new EventHandler();
+            _api = new TeamGenocideApi();
+            _events = new EventHandlers(_api);
 
             RegisterEvents();
 
@@ -31,6 +34,7 @@ namespace TeamGenocide
             UnregisterEvents();
 
             _events = null;
+            _api = null;
             Instance = null;
 
             base.OnDisabled();
