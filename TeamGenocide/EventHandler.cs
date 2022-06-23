@@ -24,10 +24,18 @@ namespace TeamGenocide
 
         public void OnChangingRole(ChangingRoleEventArgs ev)
         {
-            Player player = ev.Player;
+            if (!TeamGenocideAPI.AnnouncementsAllowed &&
+                ev.Player.Role.Team == Team.RIP)
+                return;
 
-            if (Player.List.Where(x => x.Role.Team == player.Role.Team).Count() <= 1)
-                TeamGenocideAPI.AnnounceDeath(player.Role.Team);
+            if (Player.List.FirstOrDefault(x => x.Role.Team == ev.Player.Role.Team) != null)
+            {
+                Announcement announcement = Plugin.Instance.Config.Announcements
+                    .FirstOrDefault(x => x.Team == ev.Player.Role.Team);
+
+                if (announcement != null)
+                    TeamGenocideAPI.AnnounceDeath(announcement);
+            }
         }
     }
 }

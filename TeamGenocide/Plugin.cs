@@ -21,6 +21,7 @@ namespace TeamGenocide
             Instance = this;
             _events = new EventHandler();
             RegisterEvents();
+
             base.OnEnabled();
         }
 
@@ -29,6 +30,7 @@ namespace TeamGenocide
             UnregisterEvents();
             _events = null;
             Instance = null;
+
             base.OnDisabled();
         }
 

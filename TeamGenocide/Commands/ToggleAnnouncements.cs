@@ -8,11 +8,11 @@ namespace TeamGenocide.Commands
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
     public class ToggleAnnouncements : ICommand
     {
-        public string Command => "toggle_announcements";
+        public string Command { get; } = "toggle_announcements";
 
-        public string[] Aliases => new[] { "togg_ann" };
+        public string[] Aliases { get; } = new[] { "togg_ann" };
 
-        public string Description => "If announcements from TeamGenocide plugin are allowed.";
+        public string Description { get; } = "If announcements from TeamGenocide plugin are allowed.";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

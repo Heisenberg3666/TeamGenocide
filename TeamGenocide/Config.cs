@@ -18,14 +18,18 @@ namespace TeamGenocide
                 Team = Team.CDP,
                 AnnouncementCassie = "All class D personnel have been secured .",
                 AnnouncementSubtitle = "All Class D Personnel have been secured.",
+                AnnouncementBroadcast = "All Class D Personnel have been secured.",
+                AnnouncementHint = "All Class D Personnel have been secured.",
                 AnnouncementType = AnnouncementType.Cassie | AnnouncementType.Broadcast | AnnouncementType.Hint
             },
             new Announcement()
             {
                 Team = Team.SCP,
                 AnnouncementCassie = "All S C P subjects have been secured .",
-                AnnouncementSubtitle = "All SCP subjects have been secured.",
-                AnnouncementType = AnnouncementType.Cassie | AnnouncementType.Broadcast | AnnouncementType.Hint
+                AnnouncementSubtitle = null,
+                AnnouncementBroadcast = null,
+                AnnouncementHint = "All SCP Subjects have been secured.",
+                AnnouncementType = AnnouncementType.Cassie | AnnouncementType.Hint
             }
         };
     }
