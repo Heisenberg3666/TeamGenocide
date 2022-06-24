@@ -21,7 +21,7 @@ namespace TeamGenocide
             if (ev.Player.Role.Team == Team.RIP)
                 return;
 
-            if (Player.List.FirstOrDefault(x => x.Role.Team == ev.Player.Role.Team) != null)
+            if (Player.List.Any(x => x.Role.Team == ev.Player.Role.Team))
             {
                 if (Plugin.Instance.Config.Announcements.TryGetValue(ev.Player.Role.Team, out Announcement announcement))
                     _api.AnnounceDeath(announcement);
