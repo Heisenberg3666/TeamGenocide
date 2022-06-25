@@ -12,11 +12,11 @@ namespace TeamGenocide
             if (e.Player.Role.Team == Team.RIP)
                 return;
 
-            if (Player.List.Any(x => x.Role.Team == e.Player.Role.Team))
-            {
-                if (Plugin.Instance.Config.Announcements.TryGetValue(e.Player.Role.Team, out Announcement announcement))
-                    announcement.AnnounceDeath();
-            }
+            if (!Plugin.Instance.Config.Announcements.TryGetValue(e.Player.Role.Team, out Announcement announcement))
+                return;
+
+            if (Player.List.Where(x => x.Role.Team == e.Player.Role.Team).Count() <= 1)
+                announcement.AnnounceDeath();
         }
     }
 }
