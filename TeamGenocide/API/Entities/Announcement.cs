@@ -1,15 +1,35 @@
-﻿using TeamGenocide.API.Enums;
+﻿using Exiled.API.Features;
 
 namespace TeamGenocide.API.Entities
 {
     public class Announcement
     {
-        public string AnnouncementCassie { get; set; }
-        public string AnnouncementSubtitle { get; set; }
-        public string AnnouncementBroadcast { get; set; }
-        public string AnnouncementHint { get; set; }
+        public string Cassie { get; set; }
+        public string Subtitle { get; set; }
+        public string Broadcast { get; set; }
+        public string Hint { get; set; }
         public ushort DisplayFor { get; set; } = 5;
 
-        public AnnouncementType AnnouncementType { get; set; }
+        public void AnnounceDeath()
+        {
+            AnnounceCassie();
+
+            if (!string.IsNullOrEmpty(Broadcast))
+                Map.Broadcast(DisplayFor, Subtitle);
+
+            if (!string.IsNullOrEmpty(Hint))
+                Map.ShowHint(Subtitle, DisplayFor);
+        }
+
+        private void AnnounceCassie()
+        {
+            if (!string.IsNullOrEmpty(Cassie))
+            {
+                if (string.IsNullOrEmpty(Subtitle))
+                    Exiled.API.Features.Cassie.Message(Cassie);
+                else
+                    Exiled.API.Features.Cassie.MessageTranslated(Cassie, Subtitle);
+            }
+        }
     }
 }

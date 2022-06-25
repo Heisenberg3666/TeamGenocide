@@ -1,30 +1,21 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs;
-using System.Collections.Generic;
 using System.Linq;
-using TeamGenocide.API;
 using TeamGenocide.API.Entities;
 
 namespace TeamGenocide
 {
     public class EventHandlers
     {
-        private readonly TeamGenocideApi _api;
-
-        public EventHandlers(TeamGenocideApi api)
+        public void OnChangingRole(ChangingRoleEventArgs e)
         {
-            _api = api;
-        }
-
-        public void OnChangingRole(ChangingRoleEventArgs ev)
-        {
-            if (ev.Player.Role.Team == Team.RIP)
+            if (e.Player.Role.Team == Team.RIP)
                 return;
 
-            if (Player.List.Any(x => x.Role.Team == ev.Player.Role.Team))
+            if (Player.List.Any(x => x.Role.Team == e.Player.Role.Team))
             {
-                if (Plugin.Instance.Config.Announcements.TryGetValue(ev.Player.Role.Team, out Announcement announcement))
-                    _api.AnnounceDeath(announcement);
+                if (Plugin.Instance.Config.Announcements.TryGetValue(e.Player.Role.Team, out Announcement announcement))
+                    announcement.AnnounceDeath();
             }
         }
     }
