@@ -16,10 +16,10 @@ namespace TeamGenocide.API.Entities
                 AnnounceCassie();
 
             if (!string.IsNullOrEmpty(Broadcast))
-                Map.Broadcast(DisplayFor, Subtitle);
+                Map.Broadcast(DisplayFor, Broadcast);
 
             if (!string.IsNullOrEmpty(Hint))
-                Map.ShowHint(Subtitle, DisplayFor);
+                Map.ShowHint(Hint, DisplayFor);
         }
 
         private void AnnounceCassie()
