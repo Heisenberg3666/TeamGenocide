@@ -15,7 +15,7 @@ namespace TeamGenocide
             if (!Plugin.Instance.Config.Announcements.TryGetValue(e.Player.Role.Team, out Announcement announcement))
                 return;
 
-            if (Player.List.Where(x => x.Role.Team == e.Player.Role.Team).Count() <= 1)
+            if (Player.List.Count(x => x.Role.Team == e.Player.Role.Team) <= 1)
                 announcement.AnnounceDeath();
         }
     }
