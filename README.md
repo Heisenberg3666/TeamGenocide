@@ -1,7 +1,8 @@
 # TeamGenocide
 [![Github All Releases](https://img.shields.io/github/downloads/Heisenberg3666/TeamGenocide/total.svg)]()
 
-When all players on a Team dies, a configurable announcement is made by CASSIE, Hints and/or Broadcasts.
+TeamGenocide is a plugin for the game SCP: SL using the Exiled framework. 
+When everyone within a team has died, an auditory/visual announcement is made.
 
 ```yaml
 team_genocide:
