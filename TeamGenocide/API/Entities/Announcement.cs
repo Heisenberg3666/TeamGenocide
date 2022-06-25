@@ -12,7 +12,8 @@ namespace TeamGenocide.API.Entities
 
         public void AnnounceDeath()
         {
-            AnnounceCassie();
+            if (!string.IsNullOrEmpty(Cassie))
+                AnnounceCassie();
 
             if (!string.IsNullOrEmpty(Broadcast))
                 Map.Broadcast(DisplayFor, Subtitle);
@@ -23,13 +24,10 @@ namespace TeamGenocide.API.Entities
 
         private void AnnounceCassie()
         {
-            if (!string.IsNullOrEmpty(Cassie))
-            {
-                if (string.IsNullOrEmpty(Subtitle))
-                    Exiled.API.Features.Cassie.Message(Cassie);
-                else
-                    Exiled.API.Features.Cassie.MessageTranslated(Cassie, Subtitle);
-            }
+            if (string.IsNullOrEmpty(Subtitle))
+                Exiled.API.Features.Cassie.Message(Cassie);
+            else
+                Exiled.API.Features.Cassie.MessageTranslated(Cassie, Subtitle);
         }
     }
 }
