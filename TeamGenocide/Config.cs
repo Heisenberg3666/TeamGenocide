@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using TeamGenocide.API.Entities;
-using TeamGenocide.API.Enums;
 
 namespace TeamGenocide
 {
