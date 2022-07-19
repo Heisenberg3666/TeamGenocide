@@ -1,25 +1,25 @@
 ﻿using Exiled.API.Features;
 using System;
-using Player = Exiled.Events.Handlers.Player;
+using TeamGenocide.Events;
 
 namespace TeamGenocide
 {
     public class Plugin : Plugin<Config>
     {
-        private EventHandlers _events;
+        private PlayerEvents _playerEvents;
 
         public static Plugin Instance;
 
         public override string Name { get; } = "TeamGenocide";
         public override string Author { get; } = "Heisenberg3666";
-        public override Version Version { get; } = new Version(2, 1, 2, 1);
-        public override Version RequiredExiledVersion { get; } = new Version(5, 2, 1);
+        public override Version Version { get; } = new Version(2, 1, 3, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(5, 2, 2);
 
         public override void OnEnabled()
         {
             Instance = this;
 
-            _events = new EventHandlers();
+            _playerEvents = new PlayerEvents(Config);
 
             RegisterEvents();
 
@@ -30,7 +30,7 @@ namespace TeamGenocide
         {
             UnregisterEvents();
 
-            _events = null;
+            _playerEvents = null;
 
             Instance = null;
 
@@ -39,12 +39,12 @@ namespace TeamGenocide
 
         public void RegisterEvents()
         {
-            Player.ChangingRole += _events.OnChangingRole;
+            _playerEvents.RegisterEvents();
         }
 
         public void UnregisterEvents()
         {
-            Player.ChangingRole -= _events.OnChangingRole;
+            _playerEvents.UnregisterEvents();
         }
     }
 }
