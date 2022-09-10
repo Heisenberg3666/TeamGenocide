@@ -7,7 +7,7 @@ namespace TeamGenocide.Events
 {
     internal class PlayerEvents
     {
-        private Config _config;
+        private readonly Config _config;
 
         public PlayerEvents(Config config)
         {

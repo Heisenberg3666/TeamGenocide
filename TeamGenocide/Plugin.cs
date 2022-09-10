@@ -8,8 +8,6 @@ namespace TeamGenocide
     {
         private PlayerEvents _playerEvents;
 
-        public static Plugin Instance;
-
         public override string Name { get; } = "TeamGenocide";
         public override string Author { get; } = "Heisenberg3666";
         public override Version Version { get; } = new Version(2, 1, 6, 0);
@@ -17,8 +15,6 @@ namespace TeamGenocide
 
         public override void OnEnabled()
         {
-            Instance = this;
-
             _playerEvents = new PlayerEvents(Config);
 
             RegisterEvents();
@@ -32,17 +28,15 @@ namespace TeamGenocide
 
             _playerEvents = null;
 
-            Instance = null;
-
             base.OnDisabled();
         }
 
-        public void RegisterEvents()
+        private void RegisterEvents()
         {
             _playerEvents.RegisterEvents();
         }
 
-        public void UnregisterEvents()
+        private void UnregisterEvents()
         {
             _playerEvents.UnregisterEvents();
         }
