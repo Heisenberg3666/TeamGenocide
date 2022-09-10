@@ -18,7 +18,7 @@ namespace TeamGenocide
                 Subtitle = "All Class D Personnel have been secured.",
                 Broadcast = "All Class D Personnel have been secured.",
                 Hint = "All Class D Personnel have been secured.",
-                DisplayFor = 15
+                DisplayTime = 15
             },
             [Team.SCP] = new Announcement()
             {
@@ -26,7 +26,7 @@ namespace TeamGenocide
                 Subtitle = null,
                 Broadcast = null,
                 Hint = "All SCP Subjects have been secured.",
-                DisplayFor = 10
+                DisplayTime = 10
             }
         };
     }

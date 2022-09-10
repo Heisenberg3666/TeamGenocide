@@ -8,7 +8,7 @@ namespace TeamGenocide.API.Entities
         public string Subtitle { get; set; }
         public string Broadcast { get; set; }
         public string Hint { get; set; }
-        public ushort DisplayFor { get; set; } = 5;
+        public ushort DisplayTime { get; set; }
 
         public void AnnounceDeath()
         {
@@ -16,10 +16,10 @@ namespace TeamGenocide.API.Entities
                 AnnounceCassie();
 
             if (!string.IsNullOrEmpty(Broadcast))
-                Map.Broadcast(DisplayFor, Broadcast);
+                Map.Broadcast(DisplayTime, Broadcast);
 
             if (!string.IsNullOrEmpty(Hint))
-                Map.ShowHint(Hint, DisplayFor);
+                Map.ShowHint(Hint, DisplayTime);
         }
 
         private void AnnounceCassie()
