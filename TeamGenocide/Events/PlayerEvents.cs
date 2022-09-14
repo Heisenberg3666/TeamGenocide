@@ -12,14 +12,10 @@ namespace TeamGenocide.Events
         public PlayerEvents(Config config)
         {
             _config = config;
-        }
-
-        public void RegisterEvents()
-        {
             Exiled.Events.Handlers.Player.ChangingRole += OnChangingRole;
         }
 
-        public void UnregisterEvents()
+        ~PlayerEvents()
         {
             Exiled.Events.Handlers.Player.ChangingRole -= OnChangingRole;
         }

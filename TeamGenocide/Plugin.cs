@@ -17,28 +17,14 @@ namespace TeamGenocide
         {
             _playerEvents = new PlayerEvents(Config);
 
-            RegisterEvents();
-
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
-            UnregisterEvents();
-
             _playerEvents = null;
 
             base.OnDisabled();
-        }
-
-        private void RegisterEvents()
-        {
-            _playerEvents.RegisterEvents();
-        }
-
-        private void UnregisterEvents()
-        {
-            _playerEvents.UnregisterEvents();
         }
     }
 }
