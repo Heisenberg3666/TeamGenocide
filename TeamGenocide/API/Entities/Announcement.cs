@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Exiled.API.Enums;
-using Exiled.API.Features;
+﻿using Exiled.API.Features;
 
 namespace TeamGenocide.API.Entities
 {
