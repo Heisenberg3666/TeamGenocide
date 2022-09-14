@@ -104,8 +104,15 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\Downloads\Master-5.3.0\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\Downloads\Master-5.3.0\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Entities\Lights.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="API\Entities\Announcement.cs" />
     <Compile Include="Events\PlayerEvents.cs" />

@@ -1,7 +1,9 @@
 ﻿using Exiled.API.Interfaces;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Exiled.API.Enums;
 using TeamGenocide.API.Entities;
+using UnityEngine;
 
 namespace TeamGenocide
 {
@@ -18,7 +20,19 @@ namespace TeamGenocide
                 Subtitle = "All Class D Personnel have been secured.",
                 Broadcast = "All Class D Personnel have been secured.",
                 Hint = "All Class D Personnel have been secured.",
-                DisplayTime = 15
+                DisplayTime = 15,
+                Lights = new Lights()
+                {
+                    Color = Color.black,
+                    Duration = 5f,
+                    Zones = new List<ZoneType>()
+                    {
+                        ZoneType.Surface,
+                        ZoneType.Entrance,
+                        ZoneType.HeavyContainment,
+                        ZoneType.LightContainment
+                    }
+                }
             },
             [Team.SCP] = new Announcement()
             {
@@ -26,7 +40,19 @@ namespace TeamGenocide
                 Subtitle = null,
                 Broadcast = null,
                 Hint = "All SCP Subjects have been secured.",
-                DisplayTime = 10
+                DisplayTime = 10,
+                Lights = new Lights()
+                {
+                    Color = Color.red,
+                    Duration = 5f,
+                    Zones = new List<ZoneType>()
+                    {
+                        ZoneType.Surface,
+                        ZoneType.Entrance,
+                        ZoneType.HeavyContainment,
+                        ZoneType.LightContainment
+                    }
+                }
             }
         };
     }
