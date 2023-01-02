@@ -7,15 +7,16 @@ When everyone within a team has died, an auditory/visual announcement is made.
 ```yaml
 team_genocide:
   is_enabled: true
+  debug: false
   # These are the announcements that will be made for each team that dies.
   announcements:
-    CDP:
+    ClassD:
       cassie: All class D personnel have been secured .
       subtitle: All Class D Personnel have been secured.
       broadcast: All Class D Personnel have been secured.
       hint: All Class D Personnel have been secured.
       display_for: 15
-    SCP:
+    SCPs:
       cassie: All S C P subjects have been secured .
       subtitle: 
       broadcast: 

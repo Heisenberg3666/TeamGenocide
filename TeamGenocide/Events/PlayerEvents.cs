@@ -1,6 +1,7 @@
 ﻿using Exiled.API.Features;
-using Exiled.Events.EventArgs;
 using System.Linq;
+using Exiled.Events.EventArgs.Player;
+using PlayerRoles;
 using TeamGenocide.API.Entities;
 
 namespace TeamGenocide.Events
@@ -22,7 +23,7 @@ namespace TeamGenocide.Events
 
         private void OnChangingRole(ChangingRoleEventArgs e)
         {
-            if (e.Player.Role.Team == Team.RIP)
+            if (e.Player.Role.Team == Team.Dead)
                 return;
 
             if (!_config.Announcements.TryGetValue(e.Player.Role.Team, out Announcement announcement))

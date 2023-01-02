@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Exiled.API.Enums;
+using PlayerRoles;
 using TeamGenocide.API.Entities;
 using UnityEngine;
 
@@ -10,11 +11,12 @@ namespace TeamGenocide
     public class Config : IConfig
     {
         public bool IsEnabled { get; set; } = true;
+        public bool Debug { get; set; } = false;
 
         [Description("These are the announcements that will be made for each team that dies.")]
         public Dictionary<Team, Announcement> Announcements { get; set; } = new Dictionary<Team, Announcement>()
         {
-            [Team.CDP] = new Announcement()
+            [Team.ClassD] = new Announcement()
             {
                 Cassie = "All class D personnel have been secured .",
                 Subtitle = "All Class D Personnel have been secured.",
@@ -34,7 +36,7 @@ namespace TeamGenocide
                     }
                 }
             },
-            [Team.SCP] = new Announcement()
+            [Team.SCPs] = new Announcement()
             {
                 Cassie = "All S C P subjects have been secured .",
                 Subtitle = null,
