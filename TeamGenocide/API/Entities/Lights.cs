@@ -30,6 +30,8 @@ namespace TeamGenocide.API.Entities
                     room.ResetColor();
                 });
             }
+            
+            Log.Debug("Lights have been changed.");
         }
     }
 }

@@ -11,15 +11,56 @@ team_genocide:
   # These are the announcements that will be made for each team that dies.
   announcements:
     ClassD:
-      cassie: All class D personnel have been secured .
-      subtitle: All Class D Personnel have been secured.
-      broadcast: All Class D Personnel have been secured.
-      hint: All Class D Personnel have been secured.
-      display_for: 15
+      - cassie: All class D personnel have been secured .
+        subtitle: All Class D Personnel have been secured.
+        broadcast: All Class D Personnel have been secured.
+        hint: All Class D Personnel have been secured.
+        display_time: 15
+        lights:
+          color:
+            r: 0
+            g: 0
+            b: 0
+            a: 1
+          zones:
+            - Surface
+            - Entrance
+            - HeavyContainment
+            - LightContainment
+          duration: 5
+      - cassie:
+        subtitle:
+        broadcast: All Class D Personnel have been secured.
+        hint: All Class D Personnel have been secured.
+        display_time: 3
+        lights:
+          color:
+            r: 1
+            g: 0
+            b: 1
+            a: 1
+          zones:
+            - Surface
+            - Entrance
+            - HeavyContainment
+            - LightContainment
+          duration: 50
     SCPs:
-      cassie: All S C P subjects have been secured .
-      subtitle: 
-      broadcast: 
-      hint: All SCP Subjects have been secured.
-      display_for: 10
+      - cassie: All S C P subjects have been secured .
+        subtitle:
+        broadcast:
+        hint: All SCP Subjects have been secured.
+        display_time: 10
+        lights:
+          color:
+            r: 1
+            g: 0
+            b: 0
+            a: 1
+          zones:
+            - Surface
+            - Entrance
+            - HeavyContainment
+            - LightContainment
+          duration: 5
 ```

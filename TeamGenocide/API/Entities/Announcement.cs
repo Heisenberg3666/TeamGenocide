@@ -23,6 +23,8 @@ namespace TeamGenocide.API.Entities
                 Map.ShowHint(Hint, DisplayTime);
 
             Lights?.ChangeLights();
+            
+            Log.Debug("Team death announced.");
         }
 
         private void AnnounceCassie()
@@ -31,6 +33,8 @@ namespace TeamGenocide.API.Entities
                 Exiled.API.Features.Cassie.Message(Cassie);
             else
                 Exiled.API.Features.Cassie.MessageTranslated(Cassie, Subtitle);
+            
+            Log.Debug($"Cassie has announced Team death.");
         }
     }
 }
