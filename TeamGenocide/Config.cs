@@ -14,45 +14,51 @@ namespace TeamGenocide
         public bool Debug { get; set; } = false;
 
         [Description("These are the announcements that will be made for each team that dies.")]
-        public Dictionary<Team, Announcement> Announcements { get; set; } = new Dictionary<Team, Announcement>()
+        public Dictionary<Team, List<Announcement>> Announcements { get; set; } = new Dictionary<Team, List<Announcement>>()
         {
-            [Team.ClassD] = new Announcement()
+            [Team.ClassD] = new List<Announcement>
             {
-                Cassie = "All class D personnel have been secured .",
-                Subtitle = "All Class D Personnel have been secured.",
-                Broadcast = "All Class D Personnel have been secured.",
-                Hint = "All Class D Personnel have been secured.",
-                DisplayTime = 15,
-                Lights = new Lights()
+                new Announcement()
                 {
-                    Color = Color.black,
-                    Duration = 5f,
-                    Zones = new List<ZoneType>()
+                    Cassie = "All class D personnel have been secured .",
+                    Subtitle = "All Class D Personnel have been secured.",
+                    Broadcast = "All Class D Personnel have been secured.",
+                    Hint = "All Class D Personnel have been secured.",
+                    DisplayTime = 15,
+                    Lights = new Lights()
                     {
-                        ZoneType.Surface,
-                        ZoneType.Entrance,
-                        ZoneType.HeavyContainment,
-                        ZoneType.LightContainment
+                        Color = Color.black,
+                        Duration = 5f,
+                        Zones = new List<ZoneType>()
+                        {
+                            ZoneType.Surface,
+                            ZoneType.Entrance,
+                            ZoneType.HeavyContainment,
+                            ZoneType.LightContainment
+                        }
                     }
                 }
             },
-            [Team.SCPs] = new Announcement()
+            [Team.SCPs] = new List<Announcement>
             {
-                Cassie = "All S C P subjects have been secured .",
-                Subtitle = null,
-                Broadcast = null,
-                Hint = "All SCP Subjects have been secured.",
-                DisplayTime = 10,
-                Lights = new Lights()
+                new Announcement()
                 {
-                    Color = Color.red,
-                    Duration = 5f,
-                    Zones = new List<ZoneType>()
+                    Cassie = "All S C P subjects have been secured .",
+                    Subtitle = null,
+                    Broadcast = null,
+                    Hint = "All SCP Subjects have been secured.",
+                    DisplayTime = 10,
+                    Lights = new Lights()
                     {
-                        ZoneType.Surface,
-                        ZoneType.Entrance,
-                        ZoneType.HeavyContainment,
-                        ZoneType.LightContainment
+                        Color = Color.red,
+                        Duration = 5f,
+                        Zones = new List<ZoneType>()
+                        {
+                            ZoneType.Surface,
+                            ZoneType.Entrance,
+                            ZoneType.HeavyContainment,
+                            ZoneType.LightContainment
+                        }
                     }
                 }
             }

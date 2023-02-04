@@ -10,7 +10,7 @@ namespace TeamGenocide
 
         public override string Name { get; } = "TeamGenocide";
         public override string Author { get; } = "Heisenberg3666";
-        public override Version Version { get; } = new Version(2, 2, 2, 0);
+        public override Version Version { get; } = new Version(2, 3, 0, 0);
         public override Version RequiredExiledVersion { get; } = new Version(6, 0, 0);
 
         public override void OnEnabled()

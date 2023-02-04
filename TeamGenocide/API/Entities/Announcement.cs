@@ -7,7 +7,7 @@ namespace TeamGenocide.API.Entities
         public string Cassie { get; set; }
         public string Subtitle { get; set; }
         public string Broadcast { get; set; }
-        public string Hint { get; set; } // Maybe integrate with AdvancedHints?
+        public string Hint { get; set; }
         public ushort DisplayTime { get; set; }
         public Lights Lights { get; set; }
 
