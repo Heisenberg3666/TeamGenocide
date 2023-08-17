@@ -34,7 +34,7 @@ namespace TeamGenocide.API.Entities
             else
                 Exiled.API.Features.Cassie.MessageTranslated(Cassie, Subtitle);
             
-            Log.Debug($"Cassie has announced Team death.");
+            Log.Debug("Cassie has announced Team death.");
         }
     }
 }
