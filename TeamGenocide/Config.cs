@@ -13,6 +13,8 @@ namespace TeamGenocide
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = false;
 
+        public float ActivationDelay { get; set; } = 5f;
+
         [Description("These are the announcements that will be made for each team that dies.")]
         public Dictionary<Team, List<Announcement>> Announcements { get; set; } = new Dictionary<Team, List<Announcement>>()
         {
