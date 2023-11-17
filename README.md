@@ -9,6 +9,7 @@ When everyone within a team has died, an auditory/visual announcement is made.
 team_genocide:
   is_enabled: true
   debug: false
+  activation_delay: 5
   # These are the announcements that will be made for each team that dies.
   announcements:
     ClassD:
