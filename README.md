@@ -1,5 +1,6 @@
 # TeamGenocide
-[![Github All Releases](https://img.shields.io/github/downloads/Heisenberg3666/TeamGenocide/total.svg)]()
+[![Github All Releases](https://img.shields.io/github/downloads/Heisenberg3666/TeamGenocide/total.svg?style=for-the-badge)]()
+[![MIT License](https://img.shields.io/badge/license-mit-red.svg?style=for-the-badge)](https://opensource.org/licenses/)
 
 TeamGenocide is a plugin for the game SCP: SL using the Exiled framework. 
 When everyone within a team has died, an auditory/visual announcement is made.
