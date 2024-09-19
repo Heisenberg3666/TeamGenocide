@@ -5,6 +5,10 @@
 TeamGenocide is a plugin for the game SCP: SL using the Exiled framework. 
 When everyone within a team has died, an auditory/visual announcement is made.
 
+## Support
+If you are having problems with the plugin or want to suggest new ideas, you can message me on Discord (Heisenberg3666). Alternatively, you can create an issue on Github.
+
+## Config
 ```yaml
 team_genocide:
   is_enabled: true
